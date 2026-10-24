@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Web Tech: Node.js Browser Page to Client-Server Architecture</title>
+</head>
+<body>
+  <h1>Web Tech: Node.js Browser Page to Client-Server Architecture</h1>
+
+  <p>This repository contains the source code accompanying the tutorial on transitioning a standalone client-side browser application into a dynamic client-server system using Node.js.</p>
+
+  <hr>
+
+  <h2>Repository Structure</h2>
+
+  <pre><code>├── my_bookings_browser_app/    # Standalone browser-side version
+│   ├── bookings.json
+│   ├── favicon-32x32.png
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── no.jpg
+│   └── yes.jpg
+│
+└── my_booking_server/          # Full client-server version
+    ├── bookings.json
+    ├── favicon-32x32.png
+    ├── favicon.ico
+    ├── index.html
+    ├── no.jpg
+    ├── server.js
+    ├── server_02.js
+    └── yes.jpg</code></pre>
+
+  <hr>
+
+  <h2>File &amp; Directory Descriptions</h2>
+
+  <h3>1. Standalone Browser App (<code>my_bookings_browser_app/</code>)</h3>
+  <p>This folder represents the initial phase of the tutorial: a frontend application running directly in the browser.</p>
+  <ul>
+    <li><strong><code>index.html</code></strong><br>The main user interface for the booking application. Contains the HTML structure, inline styling (CSS), and client-side JavaScript responsible for rendering booking slots, handling user clicks/selections, and managing local state.</li>
+    <li><strong><code>bookings.json</code></strong><br>The sample JSON dataset containing initial seat/slot booking records (e.g., booked vs. available slots) used to populate the interface.</li>
+    <li><strong><code>yes.jpg</code> &amp; <code>no.jpg</code></strong><br>Visual status indicators representing booked/occupied status and available status within the booking grid.</li>
+    <li><strong><code>favicon.ico</code> &amp; <code>favicon-32x32.png</code></strong><br>Browser tab icons for the application.</li>
+  </ul>
+
+  <hr>
+
+  <h3>2. Client-Server Application (<code>my_booking_server/</code>)</h3>
+  <p>This folder contains the transformed architecture where Node.js manages HTTP requests, serves static files, and maintains synchronized state across clients.</p>
+  <ul>
+    <li><strong><code>server.js</code></strong><br>The initial Node.js HTTP server. Sets up the basic <code>http.createServer</code> routing logic to serve static assets (<code>index.html</code>, images, icons, and JSON data) over HTTP rather than opening local file paths directly.</li>
+    <li><strong><code>server_02.js</code></strong><br>The enhanced server implementation. Adds logic for handling dynamic client requests, parsing URL parameters/GET queries, updating the in-memory or persisted booking state, and sending back updated JSON responses to keep multiple connected browsers synchronized.</li>
+    <li><strong><code>index.html</code></strong><br>The updated frontend interface modified to communicate with the Node.js backend via asynchronous requests (<code>fetch</code>), sending user actions to the server and updating the view dynamically based on responses.</li>
+    <li><strong><code>bookings.json</code></strong><br>The central server-side data store holding the current availability and booking state.</li>
+    <li><strong><code>yes.jpg</code> &amp; <code>no.jpg</code></strong><br>Static asset images served over HTTP by the Node server.</li>
+    <li><strong><code>favicon.ico</code> &amp; <code>favicon-32x32.png</code></strong><br>Favicon assets served with appropriate MIME types by the Node server.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Getting Started</h2>
+  <h3>Prerequisites</h3>
+  <ul><li>Node.js installed on your machine.</li></ul>
+
+  <h3>Running the Node.js Server</h3>
+  <ol>
+    <li>
+      <p>Open your terminal and navigate to the server folder:</p>
+      <pre><code>cd my_booking_server</code></pre>
+    </li>
+    <li>
+      <p>Start the base server:</p>
+      <pre><code>node server.js</code></pre>
+      <p><em>Or start the dynamic interactive server:</em></p>
+      <pre><code>node server_02.js</code></pre>
+    </li>
+    <li>
+      <p>Open your web browser and navigate to:</p>
+      <pre><code>http://localhost:8080   # (or the port specified in your server script)</code></pre>
+    </li>
+    <li>Open multiple browser tabs/windows to test real-time state synchronization across clients.</li>
+  </ol>
+</body>
+</html>

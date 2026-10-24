@@ -1,0 +1,5 @@
+[
+  { "time": "9:00 AM", "booked": false },
+  { "time": "10:00 AM", "booked": true },
+  { "time": "11:00 AM", "booked": false }
+]
